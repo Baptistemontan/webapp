@@ -1,0 +1,45 @@
+.DriverList-Wrapper {
+    border: 1px solid;
+    text-align: center;
+    width: 15em;
+}
+
+.DriverList-Selector {
+    align-self: center;
+    margin: 1em 2em 1em 2em;
+    border: 1px solid;
+    height: 3.5em;
+    width: auto;
+}
+
+.DriverSelect-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.DriverSelect-name {
+    margin-left: 1em;
+    padding-right: 1em;
+    text-align: left;
+    max-width: 8em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.DriverSelect-active-indicator {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    min-width: 2em;
+    width: 2em;
+    border: 1px solid;
+}
+
+.DriverSelect-active {
+    background-color: green;
+}
+
+.DriverSelect-inactive {
+    background-color: red;
+}
