@@ -1,11 +1,10 @@
 import React from 'react';
 import "../css/DriverList.css";
-// import * as types from '../types'
 import {Driver} from '../types'
 
-export default function DriverSelect({driver}:{driver:Driver}) {
+export default function DriverSelect({driver, onClick}:{driver:Driver, onClick:() => void}) {
     return(
-        <div className="DriverSelect-wrapper">
+        <div className="DriverSelect-wrapper" onClick={onClick}>
             <p className="DriverSelect-name">
                 {driver.name}
             </p>

@@ -3,16 +3,15 @@ import "../css/DriverList.css";
 import DriverSelect from "./DriverSelect"
 import {Driver} from '../types'
 
-export default function DriverList({drivers}:{drivers:Driver[]}) {
+export default function DriverList({drivers,callback}:{drivers:Driver[], callback:(id:number) => void}) {
     return(
-        <div className="DriverList-Wrapper">
-            {drivers.map(driver => (
-                <div className="DriverList-Selector">
-                    <DriverSelect driver={driver}></DriverSelect>
-                </div>
+        <ul className="DriverList-Wrapper">
+            {drivers.map((driver, index) => (
+                <li className="DriverList-Selector" key={driver.name}>
+                    <DriverSelect driver={driver} onClick={() => callback(index)}></DriverSelect>
+                </li>
             ))}
-        </div>
-        
+        </ul>
     )
 }
 
