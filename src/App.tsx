@@ -3,23 +3,16 @@ import './css/App.css';
 import DriverList from './components/DriverList';
 import DriverPage from './components/DriverPage';
 import { Driver } from './types';
-
+import LoadJson from "./loadJson"
 
 function App() {
 	// hooks creation
 	const [drivers, setDrivers] = useState<Driver[]>([]);
 	const [selected, setSelected] = useState<number>(-1);
 
-	// json parsing
-	const getDrivers = (path:string) => {
-		fetch(path)
-		.then(response => response.json())
-		.then((myJson:Driver[]) => setDrivers(myJson))
-	}
-
 	// json fetching on reload
 	useEffect(()=>{
-    	getDrivers("./drivers.json");
+    	LoadJson("./drivers.json", setDrivers);
 	},[])
 
 	// click handler
