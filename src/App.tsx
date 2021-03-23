@@ -4,9 +4,10 @@ import DriverList from './components/DriverList';
 import DriverPage from './components/DriverPage';
 import { Driver } from './types';
 
+
 function App() {
-	const [drivers, setDrivers]:[Driver[], any] = useState([]);
-	const [selected, setSelected]:[number, (selected:number) => void] = useState(-1);
+	const [drivers, setDrivers]:[Driver[], (drivers:Driver[]) => void] = useState<Driver[]>([]);
+	const [selected, setSelected]:[number, (id:number) => void] = useState<number>(-1);
 	const getDrivers = (path:string) => {
 		fetch(path)
 		.then(response => response.json())
@@ -15,13 +16,13 @@ function App() {
 	useEffect(()=>{
     	getDrivers("./drivers.json");
 	},[selected])
-	const selectedCallback = (id:number) => {
+	const selectedClickHandler = (id:number) => {
 		setSelected(id);
 	}
   return (
 	  <div className="app-wrapper">
 		  <div className="app-driverList">
-			  <DriverList drivers={drivers} callback={selectedCallback}></DriverList>
+			  <DriverList drivers={drivers} clickHandler={selectedClickHandler}></DriverList>
 		  </div>
 		  <div className="app-driverPage">
 			  <DriverPage driver={drivers[selected]}></DriverPage>
