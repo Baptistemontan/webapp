@@ -7,7 +7,7 @@ export default function DriverList({drivers,clickHandler}:{drivers:Driver[], cli
     return(
         <ul className="DriverList-Wrapper">
             {drivers.map((driver, index) => (
-                <li className="DriverList-Selector" key={driver.name}>
+                <li className="DriverList-Selector" key={driver.name + index}>
                     <DriverSelect driver={driver} clickHandler={() => clickHandler(index)}></DriverSelect>
                 </li>
             ))}
