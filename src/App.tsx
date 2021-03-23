@@ -7,14 +7,14 @@ import { Driver } from './types';
 
 function App() {
 	// hooks creation
-	const [drivers, setDrivers]:[Driver[], (drivers:Driver[]) => void] = useState<Driver[]>([]);
-	const [selected, setSelected]:[number, (id:number) => void] = useState<number>(-1);
+	const [drivers, setDrivers] = useState<Driver[]>([]);
+	const [selected, setSelected] = useState<number>(-1);
 
 	// json parsing
 	const getDrivers = (path:string) => {
 		fetch(path)
 		.then(response => response.json())
-		.then(myJson => setDrivers(myJson))
+		.then((myJson:Driver[]) => setDrivers(myJson))
 	}
 
 	// json fetching on reload
