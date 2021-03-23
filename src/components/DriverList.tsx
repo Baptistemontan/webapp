@@ -1,9 +1,9 @@
 import React from 'react';
 import "../css/DriverList.css";
 import DriverSelect from "./DriverSelect"
-import {Driver} from '../types'
+import {Driver, Handler} from '../types'
 
-export default function DriverList({drivers,clickHandler}:{drivers:Driver[], clickHandler:(id:number) => void}) {
+export default function DriverList({drivers,clickHandler}:{drivers:Driver[], clickHandler:Handler<number>}) {
     return(
         <ul className="DriverList-Wrapper">
             {drivers.map((driver, index) => (
