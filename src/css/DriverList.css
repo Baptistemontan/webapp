@@ -1,38 +1,46 @@
 .DriverList-Wrapper {
-    border: 1px solid;
-    text-align: center;
-    width: 15em;
+    border-right: 1px solid;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y:auto;
 }
 
 .DriverList-Selector {
+    list-style-type: none;
     align-self: center;
     margin: 1em 2em 1em 2em;
     border: 1px solid;
     height: 3.5em;
-    width: auto;
 }
 
 .DriverSelect-wrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+}
+
+.DriverSelect-name-wrapper {
+    padding: 0;
+    width: 75%;
+    max-width: 75%;
+    display: inline-block;
+}
+.DriverSelect-indicator-wrapper {
+    display: flex;
+    width: 18%;
 }
 
 .DriverSelect-name {
-    margin-left: 1em;
-    padding-right: 1em;
+    margin-left: 0.5em;
     text-align: left;
-    max-width: 8em;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
 }
 
 .DriverSelect-active-indicator {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    min-width: 2em;
-    width: 2em;
+    margin-top: 40%;
+    margin-bottom: 40%;
+    min-width: 100%;
     border: 1px solid;
 }
 
