@@ -1,5 +1,26 @@
 [
-    {"name":"Rogé", "active": true},
-    {"name":"TOM", "active": false},
-    {"name":"Abdellahaaaaaaaaaa", "active": false}
+    {
+        "driverName":"Rogé",
+        "active": true,
+        "position": {
+            "lat": 34,
+            "lng": 58
+        }
+    },
+    {
+        "driverName":"TOM",
+        "active": false,
+        "position": {
+            "lat": 26,
+            "lng": 35
+        }
+    },
+    {
+        "driverName":"Abde",
+        "active": false,
+        "position": {
+            "lat": -12,
+            "lng": 18
+        }
+    }
 ]
