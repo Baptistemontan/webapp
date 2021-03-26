@@ -27,7 +27,7 @@ function App() {
 				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
-				<DriverPage currentDriver={currentDriver} drivers={drivers}/>
+				<DriverPage currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
 			</div>
 		</div>
 	);

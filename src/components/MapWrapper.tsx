@@ -1,5 +1,5 @@
 import React from 'react';
-import { Driver } from '../types';
+import { Driver, Handler } from '../types';
 import {GoogleMap, Marker, withGoogleMap} from 'react-google-maps';
 
 const defaultCenter = {
@@ -16,17 +16,18 @@ const mapStyle = {
   height: `100%`
 };
 
-type input = {currentDriver:Driver|undefined, drivers:Driver[]|undefined}
+type input = {currentDriver:Driver|undefined, drivers:Driver[]|undefined, clickHandler:Handler<Driver|undefined>}
 
 
-function MapRender({currentDriver, drivers}:input) {
+function MapRender({currentDriver, drivers, clickHandler}:input) {
   return(
       <GoogleMap
           defaultZoom={8}
-          center={ currentDriver?.position || defaultCenter }
+          defaultCenter={defaultCenter}
+          {...(currentDriver ? {center:currentDriver.position } : {})}
       >
         {drivers?.map((driver, index) => (
-          <Marker key={(driver.driverName + index)} position={driver.position}></Marker>
+          <Marker key={(driver.driverName + index)} position={driver.position} onClick={() => clickHandler(driver)}/>
         ))}
       </GoogleMap>
   )
