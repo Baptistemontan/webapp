@@ -8,7 +8,7 @@ import LoadJson from "./loadJson"
 function App() {
 	// hooks creation
 	const [drivers, setDrivers] = useState<Driver[]>([]);
-	const [selected, setSelected] = useState<number>(-1);
+	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 
 	// json fetching on reload
 	useEffect(()=>{
@@ -16,18 +16,18 @@ function App() {
 	},[])
 
 	// click handler
-	const selectedClickHandler = (id:number) => {
-		setSelected(id);
+	const currentDriverHandler = (driver:Driver|undefined) => {
+		setCurrentDriver(driver);
 	}
 
 	// rendering
 	return (
 		<div className="app-wrapper">
 			<div className="app-driverList">
-				<DriverList drivers={drivers} clickHandler={selectedClickHandler}></DriverList>
+				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
-				<DriverPage currentDriver={drivers[selected]} drivers={drivers}></DriverPage>
+				<DriverPage currentDriver={currentDriver} drivers={drivers}/>
 			</div>
 		</div>
 	);

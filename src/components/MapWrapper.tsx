@@ -40,6 +40,6 @@ export default function MapWrapper(props:input) {
           containerElement={ <div style={containerStyle} /> }
           mapElement={ <div style={mapStyle} /> }
           {...props}
-      ></Map>
+      />
   )
 }

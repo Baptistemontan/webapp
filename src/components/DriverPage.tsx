@@ -10,7 +10,7 @@ export default function DriverPage({currentDriver, drivers}:{currentDriver:Drive
                 {currentDriver === undefined ? "No driver selected." : currentDriver.driverName}
             </p>
             <div className="driverMap-wrapper">
-                <MapWrapper currentDriver={currentDriver} drivers={drivers}></MapWrapper>
+                <MapWrapper currentDriver={currentDriver} drivers={drivers}/>
             </div>
         </div>
     )
