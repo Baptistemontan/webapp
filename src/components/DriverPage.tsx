@@ -1,16 +1,16 @@
 import React from 'react';
 import "../css/DriverPage.css";
 import {Driver} from '../types'
-import MapContainer from './MapContainer'
+import MapWrapper from './MapWrapper'
 
-export default function DriverPage({driver}:{driver:Driver | undefined}) {
+export default function DriverPage({currentDriver, drivers}:{currentDriver:Driver | undefined, drivers:Driver[]|undefined}) {
     return(
         <div className="DriverPage-wrapper">
             <p>
-                {driver === undefined ? "No driver selected." : driver.driverName}
+                {currentDriver === undefined ? "No driver selected." : currentDriver.driverName}
             </p>
             <div className="driverMap-wrapper">
-                <MapContainer height="50%" width="80%" driver={driver}></MapContainer>
+                <MapWrapper currentDriver={currentDriver} drivers={drivers}></MapWrapper>
             </div>
         </div>
     )
