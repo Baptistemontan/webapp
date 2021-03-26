@@ -7,7 +7,7 @@ import LoadJson from "./loadJson"
 
 function App() {
 	// hooks creation
-	const [drivers, setDrivers] = useState<Driver[]>([]);
+	const [drivers, setDrivers] = useState<Driver[]|undefined>(undefined);
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 
 	// json fetching on reload
