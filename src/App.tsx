@@ -9,6 +9,7 @@ function App() {
 	// hooks creation
 	const [drivers, setDrivers] = useState<Driver[]|undefined>(undefined);
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
+	const [recenter, setRecenter] = useState<boolean>(false);
 
 	// json fetching on reload
 	useEffect(()=>{
@@ -16,7 +17,8 @@ function App() {
 	},[])
 
 	// click handler
-	const currentDriverHandler = (driver:Driver|undefined) => {
+	const currentDriverHandler = (driver:Driver|undefined, recenter:boolean) => {
+		setRecenter(recenter);
 		setCurrentDriver(driver);
 	}
 
@@ -27,7 +29,7 @@ function App() {
 				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
-				<DriverPage currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
+				<DriverPage recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
 			</div>
 		</div>
 	);

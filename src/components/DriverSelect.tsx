@@ -1,10 +1,10 @@
 import React from 'react';
 import "../css/DriverList.css";
-import {Driver, Handler} from '../types'
+import {Driver, Handler2} from '../types'
 
-export default function DriverSelect({driver, clickHandler}:{driver?:Driver, clickHandler?:Handler<never>}) {
+export default function DriverSelect({driver, clickHandler}:{driver?:Driver, clickHandler?:Handler2<Driver|undefined, boolean>}) {
     return(
-        <div className="DriverSelect-wrapper" onClick={clickHandler}>
+        <div className="DriverSelect-wrapper" onClick={() => clickHandler?.(driver, true)}>
             <div className="DriverSelect-name-wrapper">
                 <p className="DriverSelect-name">
                     {driver?.driverName || "No driver"}

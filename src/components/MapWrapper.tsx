@@ -1,5 +1,5 @@
 import React from 'react';
-import { Driver, Handler } from '../types';
+import { Driver, Handler2 } from '../types';
 import {GoogleMap, withGoogleMap} from 'react-google-maps';
 import DriverMarker from './DriverMarker';
 
@@ -17,15 +17,15 @@ const mapStyle = {
     height: `100%`
 };
 
-type input = {currentDriver:Driver|undefined, drivers:Driver[]|undefined, clickHandler:Handler<Driver|undefined>}
+type input = {recenter:boolean,currentDriver:Driver|undefined, drivers:Driver[]|undefined, clickHandler:Handler2<Driver|undefined, boolean>}
 
 
-function MapRender({currentDriver, drivers, clickHandler}:input) {
+function MapRender({recenter, currentDriver, drivers, clickHandler}:input) {
     return(
         <GoogleMap
             defaultZoom={8}
             defaultCenter={defaultCenter}
-            {...(currentDriver ? {center:currentDriver.position } : {})}
+            {...(recenter && currentDriver ? {center:currentDriver.position} : {})}
         >
             {drivers?.map((driver, index) => (
                 <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />

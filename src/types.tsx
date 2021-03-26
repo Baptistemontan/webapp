@@ -19,3 +19,4 @@ export interface Driver {
 }
 
 export type Handler<Type> = (arg:Type) => void
+export type Handler2<Type1, Type2> = (arg1: Type1, arg2:Type2) => void
