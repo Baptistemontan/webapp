@@ -9,7 +9,7 @@ export default function DriverMarker({driver, clickHandler}:{driver:Driver, clic
         clickHandler(driver, false);
     }
     return (
-        <Marker position={driver.position} onClick={onClick}>
+        <Marker position={driver.events[0].pos} onClick={onClick}>
             { markerVisibility && 
                 <InfoWindow onCloseClick={() => setMarkerVisibility(false)}>
                     <p>{driver.driverName}</p>

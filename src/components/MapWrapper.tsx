@@ -25,7 +25,7 @@ function MapRender({recenter, currentDriver, drivers, clickHandler}:input) {
         <GoogleMap
             defaultZoom={8}
             defaultCenter={defaultCenter}
-            {...(recenter && currentDriver ? {center:currentDriver.position} : {})}
+            {...(recenter && currentDriver ? {center:currentDriver.events[0].pos} : {})}
         >
             {drivers?.map((driver, index) => (
                 <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
