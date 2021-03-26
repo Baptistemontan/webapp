@@ -34,6 +34,7 @@
     margin-left: 0.5em;
     text-align: left;
     text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
 }
 
