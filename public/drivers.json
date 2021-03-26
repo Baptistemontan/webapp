@@ -3,24 +3,24 @@
         "driverName":"Rogé",
         "active": true,
         "position": {
-            "lat": 34,
-            "lng": 58
+            "lat": 48.839099,
+            "lng": 2.262012
         }
     },
     {
         "driverName":"TOM",
         "active": false,
         "position": {
-            "lat": 26,
-            "lng": 35
+            "lat": 48.967252,
+            "lng": 2.698765
         }
     },
     {
         "driverName":"Abde",
         "active": false,
         "position": {
-            "lat": -12,
-            "lng": 18
+            "lat": 49.024937,
+            "lng": 2.219842
         }
     }
 ]
