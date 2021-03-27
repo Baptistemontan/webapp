@@ -4,12 +4,16 @@ import DriverList from './components/DriverList';
 import { Driver } from './types';
 import LoadJson from "./loadJson"
 import DriverMap from './components/DriverMap';
+import DriverInfo from './components/DriverInfo';
 
 function App() {
 	// hooks creation
 	const [drivers, setDrivers] = useState<Driver[]|undefined>(undefined);
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 	const [recenter, setRecenter] = useState<boolean>(false);
+	const [infoPage, setInfoPage] = useState<boolean>(false);
+
+	const changePageHandler = () => setInfoPage(!infoPage);
 
 	// json fetching on reload
 	useEffect(()=>{
@@ -29,7 +33,11 @@ function App() {
 				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
-				<DriverMap recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
+				{infoPage && currentDriver ? 
+					<DriverInfo currentDriver={currentDriver} changePageHandler={changePageHandler}/> 
+					: 
+					<DriverMap recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler} changePageHandler={changePageHandler}/>
+				}
 			</div>
 		</div>
 	);
