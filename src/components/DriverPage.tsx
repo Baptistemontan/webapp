@@ -11,11 +11,12 @@ export default function DriverPage({recenter,currentDriver, drivers, changeDrive
                     <p>Driver Name : {currentDriver === undefined ? "No driver selected." : currentDriver.driverName} 
                     <br/>Truck ID : {currentDriver?.truckId}</p>
                 </div>
-                <div className="DriverPage-switch-button button">
+                { currentDriver &&  <div className="DriverPage-switch-button button">
                     <p>
                         Driver Info Page
                     </p>
-                </div>
+                </div> }
+                
             </div>
             <div className="driverMap-wrapper">
                 <Map  recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={changeDriverHandler} {...MapStyle}/>

@@ -1,3 +1,23 @@
 .driverMap-wrapper {
     max-height: 50%;
 }
+
+.DriverPage-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .DriverPage-info {
+    width: 70%;
+} */
+
+.DriverPage-switch-button {
+    width: 10em;
+    margin: 0.5em 2em;
+    border: 1px solid;
+    height: 3.5em;
+}
+
+.DriverPage-switch-button p {
+    padding: 0em 0em 0em 0.5em;
+}
