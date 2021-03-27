@@ -7,32 +7,26 @@
     overflow-y:auto;
 }
 
-.DriverList-Selector {
+.DriverList-Selector {        /* Opera/IE 8+ */
     list-style-type: none;
-    align-self: center;
-    margin: 1em 2em 1em 2em;
-    border: 1px solid;
+    margin: 1em 2em;
     height: 3.5em;
+    border: 1px solid;
 }
 
-.DriverSelect-wrapper {
-    display: flex;
+.button:hover {
+    border: 3px solid;
 }
 
-.DriverSelect-name-wrapper {
-    padding: 0;
-    width: 75%;
-    max-width: 75%;
-    display: inline-block;
-}
-.DriverSelect-indicator-wrapper {
-    display: flex;
-    width: 18%;
+.button {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 .DriverSelect-name {
-    margin-left: 0.5em;
-    text-align: left;
+    padding: 0em 1em 0em 0.5em;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

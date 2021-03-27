@@ -9,7 +9,8 @@ html, body, #root, .app-wrapper, .app-driverList , .app-driverPage{
 }
 
 .app-driverList {
-  width: 15em;
+  min-width: 15em;
+  max-width: 15em;
 }
 
 .app-wrapper {
