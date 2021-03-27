@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import './css/App.css';
 import DriverList from './components/DriverList';
-import DriverPage from './components/DriverPage';
 import { Driver } from './types';
 import LoadJson from "./loadJson"
+import DriverMap from './components/DriverMap';
 
 function App() {
 	// hooks creation
@@ -29,7 +29,7 @@ function App() {
 				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
-				<DriverPage recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
+				<DriverMap recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler}/>
 			</div>
 		</div>
 	);
