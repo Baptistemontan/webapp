@@ -2,6 +2,7 @@ import React from 'react';
 import { Driver, DriverEvent, Handler2 } from '../types';
 import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import DriverMarker from './DriverMarker';
+import EventMarker from './EventMarker'
 
 const defaultCenter = {
     // // Paris coordonates
@@ -32,9 +33,15 @@ function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{rece
             defaultCenter={defaultCenter}
             {...(recenter && currentDriver ? {center:currentDriver.events[0].pos} : {})}
         >
+            {/* For unknown reason the map function give error if the is other siblings elements (only for synthax check, but compile properly) 
+                So I wrap the map function in <></>
+                This is kinda ugly but it get rid of the "Excessive stack depth comparing types 'FlatArray<Arr, ?>' and 'FlatArray<Arr, ?>'." error */}
+            <>
             {drivers?.map((driver, index) => (
                 <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
             ))}
+            </>
+            <EventMarker event={event}/>
         </GoogleMap>
     )
 }
