@@ -1,6 +1,6 @@
 import React from 'react';
 import "../css/DriverPage.css";
-import {Driver, Handler} from '../types'
+import { Driver, Handler } from '../types'
 
 export default function DriverInfo({currentDriver, changePageHandler}:{currentDriver:Driver, changePageHandler:Handler<never>}) {
     return(

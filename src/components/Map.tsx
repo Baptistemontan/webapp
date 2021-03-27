@@ -1,6 +1,6 @@
 import React from 'react';
-import { Driver, Handler2 } from '../types';
-import {GoogleMap, withGoogleMap} from 'react-google-maps';
+import { Driver, DriverEvent, Handler2 } from '../types';
+import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import DriverMarker from './DriverMarker';
 
 const defaultCenter = {
@@ -12,7 +12,7 @@ const defaultCenter = {
 }
 
 const containerStyle = { 
-    height: `60vh`
+    height: `50vh`
 }
 
 const mapStyle = { 
@@ -25,7 +25,7 @@ export const MapStyle = {
 }
 
 
-function MapRender({recenter, currentDriver, drivers, clickHandler}:{recenter:boolean,currentDriver:Driver|undefined, drivers:Driver[]|undefined, clickHandler:Handler2<Driver|undefined, boolean>}) {
+function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers?:Driver[], clickHandler:Handler2<Driver|undefined, boolean>, event?:DriverEvent}) {
     return(
         <GoogleMap
             defaultZoom={5}

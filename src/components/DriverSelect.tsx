@@ -1,6 +1,6 @@
 import React from 'react';
 import "../css/DriverList.css";
-import {Driver} from '../types'
+import { Driver } from '../types'
 
 export default function DriverSelect({driver}:{driver?:Driver}) {
     return(
