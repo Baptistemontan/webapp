@@ -20,7 +20,6 @@ export declare interface Driver {
     truckId:number,
     driverId:number,
     driverName:string,
-    active:boolean,
     events:DriverEvent[]
 }
 
