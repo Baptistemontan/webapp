@@ -31,6 +31,8 @@ function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{rece
         <GoogleMap
             defaultZoom={5}
             defaultCenter={defaultCenter}
+            // disable "CTRL + scroll to zoom" message
+            options={{ gestureHandling: "greedy" }}
             {...(recenter && currentDriver ? {center:currentDriver.events[0].pos} : {})}
         >
             {/* For unknown reason the map function give error if the is other siblings elements (only for synthax check, but compile properly) 
