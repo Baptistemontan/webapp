@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import "../css/DriverEvents.css";
 import { Driver, DriverEvent, Handler } from '../types'
+import { timestampToDateStr } from "../functions"
 
 function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, clickHandle:Handler<never>, selected:boolean}) {
-    const now = new Date(event.eventTime);
-    const offsetMs = now.getTimezoneOffset() * 60 * 1000;
-    const dateLocal = new Date(now.getTime() - offsetMs);
-    const str = dateLocal.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
     return(
         <tr onClick={clickHandle} className={"button " + (selected ? "selected" : "")}>
-            <td className="driverEvent-big">{str}</td>
+            <td className="driverEvent-big">{timestampToDateStr(event.eventTime)}</td>
             <td className="driverEvent-small">{event.routeId}</td>
             <td className="driverEvent-big">{event.routeName}</td>
             <td className="driverEvent-small">{event.speed}</td>
@@ -22,7 +19,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function DriverEvents({events, eventSelectHandle, currentDriver}:{events:DriverEvent[], eventSelectHandle:Handler<DriverEvent>, currentDriver:Driver}) {
+export default function DriverEvents({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
     const [driver, setDriver] = useState<Driver>(currentDriver);
     if(currentDriver.driverId !== driver.driverId) {
@@ -49,7 +46,7 @@ export default function DriverEvents({events, eventSelectHandle, currentDriver}:
                 </tr>
             </thead>
             <tbody>
-                {events.map((event, index) => (
+                {currentDriver.events.map((event, index) => (
                     <DriverEventDisplay selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
                 ))}
             </tbody>
