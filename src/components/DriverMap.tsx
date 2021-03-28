@@ -4,7 +4,7 @@ import { Driver, Handler, Handler2 } from '../types'
 import Map, { MapStyle } from './Map'
 import DriverEvents from './DriverEvents'
 
-export default function DriverMap({recenter,currentDriver, drivers, changeDriverHandler, changePageHandler}:{recenter:boolean, currentDriver?:Driver, drivers?:Driver[], changeDriverHandler:Handler2<Driver|undefined, boolean>, changePageHandler:Handler<never>}) {
+export default function DriverMap({recenter,currentDriver, drivers, changeDriverHandler, changePageHandler}:{recenter:boolean, currentDriver?:Driver, drivers:Driver[], changeDriverHandler:Handler2<Driver|undefined, boolean>, changePageHandler:Handler<never>}) {
     return(
         <div className="DriverPage-wrapper">
             <div className="DriverPage-info-wrapper">

@@ -1,11 +1,11 @@
 import React from 'react';
 import "../css/DriverList.css";
-import DriverSelect from "./DriverSelect"
+import DriverSelect from "./DriverSelector"
 import { Driver, Handler2 } from '../types'
 
-export default function DriverList({drivers,clickHandler}:{drivers?:Driver[], clickHandler:Handler2<Driver|undefined, boolean>}) {
-    const list = drivers?.map((driver, index) => (
-        <li className = "DriverList-Selector button" key={driver.driverName + index} onClick={() => clickHandler(driver, true)}>
+export default function DriverList({currentDriver, drivers,clickHandler}:{currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver|undefined, boolean>}) {
+    const list = drivers.map((driver, index) => (
+        <li className = {"DriverList-Selector button " + (driver.driverId === currentDriver?.driverId ? "DriverList-Selector-selected" : "")} key={driver.driverName + index} onClick={() => clickHandler(driver, true)}>
             <DriverSelect driver={driver}/>
         </li>
     ));
@@ -19,7 +19,7 @@ export default function DriverList({drivers,clickHandler}:{drivers?:Driver[], cl
     
     return(
         <ul className="DriverList-Wrapper">
-            { list && list.length ? list : defaultDriver }
+            { list.length ? list : defaultDriver }
         </ul>
     )
 }

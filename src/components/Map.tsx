@@ -26,7 +26,7 @@ export const MapStyle = {
 }
 
 
-function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers?:Driver[], clickHandler:Handler2<Driver|undefined, boolean>, event?:DriverEvent}) {
+function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver|undefined, boolean>, event?:DriverEvent}) {
     return(
         <GoogleMap
             defaultZoom={5}
@@ -39,11 +39,11 @@ function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{rece
                 So I wrap the map function in <></>
                 This is kinda ugly but it get rid of the "Excessive stack depth comparing types 'FlatArray<Arr, ?>' and 'FlatArray<Arr, ?>'." error */}
             <>
-            {drivers?.map((driver, index) => (
+            {drivers.map((driver, index) => (
                 <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
             ))}
             </>
-            <EventMarker event={event}/>
+            {event && <EventMarker event={event}/>}
         </GoogleMap>
     )
 }

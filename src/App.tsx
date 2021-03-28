@@ -8,7 +8,7 @@ import DriverInfo from './components/DriverInfo';
 
 function App() {
 	// hooks creation
-	const [drivers, setDrivers] = useState<Driver[]|undefined>(undefined);
+	const [drivers, setDrivers] = useState<Driver[]>([]);
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 	const [recenter, setRecenter] = useState<boolean>(false);
 	const [infoPage, setInfoPage] = useState<boolean>(false);
@@ -30,7 +30,7 @@ function App() {
 	return (
 		<div className="app-wrapper">
 			<div className="app-driverList">
-				<DriverList drivers={drivers} clickHandler={currentDriverHandler}/>
+				<DriverList currentDriver={currentDriver} drivers={drivers} clickHandler={currentDriverHandler}/>
 			</div>
 			<div className="app-driverPage">
 				{infoPage && currentDriver ? 
