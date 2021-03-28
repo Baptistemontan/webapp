@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import './css/App.css';
 import DriverList from './components/DriverList';
 import { Driver, DriverEvent } from './types';
-import LoadJson from "./loadJson"
+import { LoadJson } from "./functions"
 import DriverMap from './components/DriverMap';
 import DriverInfo from './components/DriverInfo';
 
