@@ -1,0 +1,138 @@
+/* .driverEvent-wrapper {
+    margin-top: 2em;
+    height: 30vh;
+    border: 1px solid;
+}
+
+.driverEvent-titles {
+    margin: 0;
+    padding: 0;
+    height: 15%;
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.driverEvent-titles div {
+    margin: 0;
+    border-right: 1px solid;
+}
+
+
+.driverEvent-titles div:last-child {
+    border-right: 0;
+}
+
+.driverEvent-big {
+    flex-grow: 5;
+}
+
+.driverEvent-small {
+    flex-grow: 1;
+}
+
+.driverEvent-titles p {
+    vertical-align: middle;
+    margin: 0.3em 0 0 0.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.driverEvent-events {
+    overflow-y: scroll;
+    height: 84%;
+    padding: 0;
+    margin: 0;
+}
+
+.driverEvent-events div:last-child {
+    border-bottom: none;
+} */
+
+table {
+    margin-top: 2em;
+    height: 30vh;
+    border: 1px solid;
+    width: 100%;
+    border-spacing: 0;
+}
+
+thead, tbody, tr, th, td {
+    display: block;
+}
+
+/* thead {
+    height: 15%;
+} */
+
+thead tr {
+    width: 97%;
+    width: -webkit-calc(100% - 16px);
+    width:    -moz-calc(100% - 16px);
+    width:         calc(100% - 16px);
+}
+
+tr:after {  /* clearing float */
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+th {
+    font-size: small;
+    font-weight: bold;
+    height: 100%;
+}
+
+thead tr {
+    height: 100%;
+}
+
+thead {
+    overflow: hidden;
+    height: 15%;
+    border-bottom: 1px solid;
+}
+
+tbody {
+    height: 85%;
+    height: -webkit-calc(85% - 1px);
+    height:    -moz-calc(85% - 1px);
+    height:         calc(85% - 1px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody td, thead th {
+    /* width: 10%; */
+    float: left;
+}
+
+td, th {
+    border-right: 1px solid;
+    padding: 0;
+    padding: 0.2em;
+}
+
+thead th:last-child , tbody td:last-child {
+    border-right: none;
+}
+
+td {
+    font-size: smaller;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.driverEvent-big {
+    width: 14%;
+}
+
+.driverEvent-small {
+    width: 7%;
+}
