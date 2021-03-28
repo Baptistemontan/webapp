@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../css/DriverPage.css";
-import { Driver, Handler, Handler2 } from '../types'
+import { Driver, Handler, Handler2, DriverEvent } from '../types'
 import Map, { MapStyle } from './Map'
 import DriverEvents from './DriverEvents'
 
 export default function DriverMap({recenter,currentDriver, drivers, changeDriverHandler, changePageHandler}:{recenter:boolean, currentDriver?:Driver, drivers:Driver[], changeDriverHandler:Handler2<Driver|undefined, boolean>, changePageHandler:Handler<never>}) {
+    const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined);
+    const eventSelectHandle = (event:DriverEvent) => {
+        setCurrentEvent(event);
+    }
     return(
         <div className="DriverPage-wrapper">
             <div className="DriverPage-info-wrapper">
@@ -18,8 +22,8 @@ export default function DriverMap({recenter,currentDriver, drivers, changeDriver
                     </p>
                 </div> }
             </div>
-            <Map recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={changeDriverHandler} {...MapStyle}/>
-            <DriverEvents events={currentDriver?.events}/>
+            <Map recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={changeDriverHandler} event={currentEvent} {...MapStyle}/>
+            {currentDriver && <DriverEvents events={currentDriver.events} eventSelectHandle={eventSelectHandle}/>}
         </div>
     )
 }
