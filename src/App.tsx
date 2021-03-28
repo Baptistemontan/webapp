@@ -17,7 +17,7 @@ function App() {
 
 	// json fetching on reload
 	useEffect(()=>{
-    	LoadJson("./drivers.json", setDrivers);
+    	LoadJson(window.location.href + "/drivers.json", setDrivers);
 	},[])
 
 	// click handler

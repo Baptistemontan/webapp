@@ -8,7 +8,9 @@ export default function LoadJson(path:string, callback:Handler<any>) {
 	}, reason => {
 		console.log(reason);
 	})
-	.then((myJson) => {
+	.then(myJson => {
 		callback(myJson)
+	}, err => {
+		console.log(err);
 	})
 }
