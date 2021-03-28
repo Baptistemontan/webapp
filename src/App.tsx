@@ -14,7 +14,10 @@ function App() {
 	const [infoPage, setInfoPage] = useState<boolean>(false);
 	const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined);
 
-	const changePageHandler = () => setInfoPage(!infoPage);
+	const changePageHandler = () => {
+		setCurrentEvent(undefined);
+		setInfoPage(!infoPage);
+	}
 
 	// json fetching on reload
 	useEffect(()=>{
