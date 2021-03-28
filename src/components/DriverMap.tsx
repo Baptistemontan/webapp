@@ -26,7 +26,7 @@ export default function DriverMap({recenter,currentDriver, drivers, changeDriver
                 </div> }
             </div>
             <Map recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={clickHandler} event={currentEvent} {...MapStyle}/>
-            {currentDriver && <DriverEvents currentDriver={currentDriver} events={currentDriver.events} eventSelectHandle={eventSelectHandle}/>}
+            {currentDriver && <DriverEvents currentDriver={currentDriver} eventSelectHandle={eventSelectHandle}/>}
         </div>
     )
 }
