@@ -46,3 +46,7 @@
 .DriverSelect-inactive {
     background-color: red;
 }
+
+.DriverList-Selector-selected {
+    background-color: darkgrey;
+}
