@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+.selected {
+    background-color: darkgrey;
+}
+
 .DriverSelect-name {
     padding: 0em 1em 0em 0.5em;
     text-overflow: ellipsis;
@@ -47,6 +51,3 @@
     background-color: red;
 }
 
-.DriverList-Selector-selected {
-    background-color: darkgrey;
-}
