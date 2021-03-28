@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../css/DriverEvents.css";
-import { DriverEvent, Handler } from '../types'
+import { Driver, DriverEvent, Handler } from '../types'
 
 function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, clickHandle:Handler<never>, selected:boolean}) {
     const now = new Date(event.eventTime);
@@ -22,10 +22,14 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function DriverEvents({events, eventSelectHandle}:{events:DriverEvent[], eventSelectHandle:Handler<DriverEvent>}) {
+export default function DriverEvents({events, eventSelectHandle, currentDriver}:{events:DriverEvent[], eventSelectHandle:Handler<DriverEvent>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
+    const [driver, setDriver] = useState<Driver>(currentDriver);
+    if(currentDriver.driverId !== driver.driverId) {
+        setDriver(currentDriver);
+        setSelectedEvent(undefined);
+    }
     const selectEvent = (event:DriverEvent, num:number) => {
-        console.log(num);
         setSelectedEvent(num);
         eventSelectHandle(event);
     }
