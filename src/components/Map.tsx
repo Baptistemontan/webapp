@@ -40,10 +40,11 @@ function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{rece
                 This is kinda ugly but it get rid of the "Excessive stack depth comparing types 'FlatArray<Arr, ?>' and 'FlatArray<Arr, ?>'." error */}
             <>
             {drivers.map((driver, index) => (
-                <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
+                // for ***** reason having 2 marker at the same position makes them unable to be deleted, so we make sure we don't put 2 marker atthe same place
+                driver.events[0].pos !== event?.pos && <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
             ))}
             </>
-            {event && <EventMarker event={event}/>}
+            <EventMarker event={event}/>
         </GoogleMap>
     )
 }
