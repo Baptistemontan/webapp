@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import './css/App.css';
 import DriverList from './components/DriverList';
-import { Driver } from './types';
+import { Driver, DriverEvent } from './types';
 import LoadJson from "./loadJson"
 import DriverMap from './components/DriverMap';
 import DriverInfo from './components/DriverInfo';
@@ -12,6 +12,7 @@ function App() {
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 	const [recenter, setRecenter] = useState<boolean>(false);
 	const [infoPage, setInfoPage] = useState<boolean>(false);
+	const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined);
 
 	const changePageHandler = () => setInfoPage(!infoPage);
 
@@ -23,6 +24,7 @@ function App() {
 	// click handler
 	const currentDriverHandler = (driver:Driver|undefined, recenter:boolean) => {
 		setRecenter(recenter);
+		setCurrentEvent(undefined);
 		setCurrentDriver(driver);
 	}
 
@@ -36,7 +38,7 @@ function App() {
 				{infoPage && currentDriver ? 
 					<DriverInfo currentDriver={currentDriver} changePageHandler={changePageHandler}/> 
 					: 
-					<DriverMap recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler} changePageHandler={changePageHandler}/>
+					<DriverMap currentEvent={currentEvent} changeEventHandler={setCurrentEvent} recenter={recenter} currentDriver={currentDriver} drivers={drivers} changeDriverHandler={currentDriverHandler} changePageHandler={changePageHandler}/>
 				}
 			</div>
 		</div>
