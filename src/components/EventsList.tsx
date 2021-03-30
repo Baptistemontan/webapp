@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../css/DriverEvents.css";
 import { Driver, DriverEvent, Handler } from '../types'
 import { timestampToDateStr } from "../functions"
@@ -19,21 +19,24 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function DriverEvents({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
+export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
     const [driver, setDriver] = useState<Driver>(currentDriver);
 
-    if(currentDriver.driverId !== driver.driverId) {
-        setDriver(currentDriver);
-        setSelectedEvent(undefined);
-        eventSelectHandle(undefined)
-    }
+    useEffect(() => {
+        if(currentDriver.driverId !== driver.driverId) {
+            eventSelectHandle(undefined);
+            setDriver(currentDriver);
+            setSelectedEvent(undefined);
+        }
+    },[driver, selectedEvent, currentDriver, eventSelectHandle]);
+    
 
     const selectEvent = (event:DriverEvent, num:number) => {
         setSelectedEvent(num);
         eventSelectHandle(event);
     }
-    
+
     return(
         <table>
             <thead>
@@ -51,7 +54,7 @@ export default function DriverEvents({eventSelectHandle, currentDriver}:{eventSe
             </thead>
             <tbody>
                 {currentDriver.events.map((event, index) => (
-                    <DriverEventDisplay selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
+                    <DriverEventDisplay key={event.routeName + index} selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
                 ))}
             </tbody>
             
