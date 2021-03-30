@@ -1,19 +1,28 @@
 import React from 'react';
 import "../css/DriverList.css";
-import DriverSelect from "./DriverSelector"
 import { Driver, Handler2 } from '../types'
+
+function DriverSelector({driver}:{driver?:Driver}) {
+    return(
+        <div className="DriverSelect-wrapper">
+            <p className="DriverSelect-name">
+                {driver?.driverName || "No driver"}
+            </p>
+        </div>
+    )
+}
 
 export default function DriverList({currentDriver, drivers,clickHandler}:{currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver|undefined, boolean>}) {
     const list = drivers.map((driver, index) => (
         <li className = {"DriverList-Selector button " + (driver.driverId === currentDriver?.driverId ? "selected" : "")} key={driver.driverName + index} onClick={() => clickHandler(driver, true)}>
-            <DriverSelect driver={driver}/>
+            <DriverSelector driver={driver}/>
         </li>
     ));
 
     // No driver display
     const defaultDriver = (
         <li className="DriverList-Selector">
-            <DriverSelect/>
+            <DriverSelector />
         </li>
     )
     
