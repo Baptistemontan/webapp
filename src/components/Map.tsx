@@ -26,7 +26,7 @@ export const MapStyle = {
 }
 
 
-function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver|undefined, boolean>, event?:DriverEvent}) {
+function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver, boolean>, event?:DriverEvent}) {
     return(
         <GoogleMap
             defaultZoom={5}
