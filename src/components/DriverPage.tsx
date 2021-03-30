@@ -12,7 +12,6 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
 
     const changePageHandler = () => setEventInfoRender(!eventInfoRender)
 
-
     return (
         <div className="DriverPage-wrapper">
             <div className="DriverPage-info-wrapper">
@@ -26,8 +25,11 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
                     </p>
                 </div> }
             </div>
+
             <Map recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={currentDriverHandler} event={currentEvent} {...(MapStyle(!eventInfoRender))}/>
+            
             { currentDriver && <EventsList currentDriver={currentDriver} eventSelectHandle={setCurrentEvent} /> }
+            
             { eventInfoRender && currentEvent &&  <EventInfo event={currentEvent} />}
         </div>
     )

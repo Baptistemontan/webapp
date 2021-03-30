@@ -22,15 +22,18 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
 export default function DriverEvents({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
     const [driver, setDriver] = useState<Driver>(currentDriver);
+
     if(currentDriver.driverId !== driver.driverId) {
         setDriver(currentDriver);
         setSelectedEvent(undefined);
         eventSelectHandle(undefined)
     }
+
     const selectEvent = (event:DriverEvent, num:number) => {
         setSelectedEvent(num);
         eventSelectHandle(event);
     }
+    
     return(
         <table>
             <thead>

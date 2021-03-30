@@ -6,10 +6,12 @@ import { Marker, InfoWindow } from 'react-google-maps';
 
 export default function DriverMarker({driver, clickHandler}:{driver:Driver, clickHandler:Handler2<Driver, boolean>}) {
     const [infoWindowVisibility, setInfoWindowVisibility] = useState<boolean>(false);
+    
     const onClick = () => {
         setInfoWindowVisibility(!infoWindowVisibility);
         clickHandler(driver, false);
     }
+    
     return (
         <Marker 
             position={driver.events[0].pos}
