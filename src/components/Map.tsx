@@ -12,18 +12,18 @@ const defaultCenter = {
     lng:-90.0439453125
 }
 
-const containerStyle = { 
-    height: `50vh`
-}
+const containerStyle = (visible:boolean) => ({ 
+    height: (visible ? `50vh` : "0")
+})
 
 const mapStyle = { 
     height: `100%`
 }
 
-export const MapStyle = {
-    containerElement: <div style={containerStyle} />,
+export const MapStyle = (visible:boolean) => ({
+    containerElement: <div style={containerStyle(visible)} />,
     mapElement: <div style={mapStyle} />
-}
+})
 
 
 function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver, boolean>, event?:DriverEvent}) {
