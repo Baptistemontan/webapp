@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "../css/DriverEvents.css";
 import { Driver, DriverEvent, Handler } from '../types'
 import { timestampToDateStr } from "../functions"
@@ -22,8 +22,13 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
 export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
 
+    // top row of the table reference
+    const topRowRef = useRef<HTMLTableRowElement>(null);
+
     useEffect(() => {
         setSelectedEvent(undefined);
+        // scroll back to top when switching driver
+        topRowRef.current?.scrollIntoView();
     },[currentDriver]);
     
 
@@ -48,9 +53,14 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
                 </tr>
             </thead>
             <tbody>
+                { /* need this empty row to scroll back to the top */ }
+                <tr ref={topRowRef}></tr>
+                { /* same horrendous synthax error has in Map.tsx */ }
+                <>
                 {currentDriver.events.map((event, index) => (
                     <DriverEventDisplay key={event.routeName + index} selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
                 ))}
+                </>
             </tbody>
             
         </table>
