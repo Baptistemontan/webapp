@@ -1,57 +1,3 @@
-/* .driverEvent-wrapper {
-    margin-top: 2em;
-    height: 30vh;
-    border: 1px solid;
-}
-
-.driverEvent-titles {
-    margin: 0;
-    padding: 0;
-    height: 15%;
-    border-bottom: 1px solid;
-    display: flex;
-    justify-content: space-around;
-}
-
-
-.driverEvent-titles div {
-    margin: 0;
-    border-right: 1px solid;
-}
-
-
-.driverEvent-titles div:last-child {
-    border-right: 0;
-}
-
-.driverEvent-big {
-    flex-grow: 5;
-}
-
-.driverEvent-small {
-    flex-grow: 1;
-}
-
-.driverEvent-titles p {
-    vertical-align: middle;
-    margin: 0.3em 0 0 0.5em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-}
-
-.driverEvent-events {
-    overflow-y: scroll;
-    height: 84%;
-    padding: 0;
-    margin: 0;
-}
-
-.driverEvent-events div:last-child {
-    border-bottom: none;
-} */
-
 table {
     margin-top: 2em;
     height: 30vh;
@@ -63,10 +9,6 @@ table {
 thead, tbody, tr, th, td {
     display: block;
 }
-
-/* thead {
-    height: 15%;
-} */
 
 thead tr {
     width: 97%;
