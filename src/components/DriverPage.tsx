@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../css/DriverPage.css";
 import { Driver, DriverEvent, Handler2 } from '../types'
 import Map, {MapStyle} from './Map'
@@ -11,6 +11,10 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
     const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined)
 
     const changePageHandler = () => setEventInfoRender(!eventInfoRender)
+
+    useEffect(() => {
+        setCurrentEvent(undefined);
+    },[currentDriver]);
 
     return (
         <div className="DriverPage-wrapper">

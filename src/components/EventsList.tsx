@@ -21,15 +21,10 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
 
 export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
-    const [driver, setDriver] = useState<Driver>(currentDriver);
 
     useEffect(() => {
-        if(currentDriver.driverId !== driver.driverId) {
-            eventSelectHandle(undefined);
-            setDriver(currentDriver);
-            setSelectedEvent(undefined);
-        }
-    },[driver, selectedEvent, currentDriver, eventSelectHandle]);
+        setSelectedEvent(undefined);
+    },[currentDriver]);
     
 
     const selectEvent = (event:DriverEvent, num:number) => {
