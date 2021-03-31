@@ -10,16 +10,16 @@ const formatCoords = require('formatcoords')
 export default function EventInfo({event}:{event:DriverEvent}) {
     return(
         <div>
-            <p>Date : {timestampToDateStr(event.eventTime)}</p>
-            <p>Route ID : {event.routeId}</p>
-            <p>Route Name : {event.routeName}</p>
-            <p>Speed : {event.speed}</p>
-            <p>Event type : {event.eventType}</p>
-            <p>Foggy : {event.foggy ? "True" : "False"}</p>
-            <p>Rainy : {event.rainy ? "True" : "False"}</p>
-            <p>Windy : {event.windy ? "True" : "False"}</p>
-            <p>Congestion level : {event.congestionLevel}</p>
-            <p>Event position : {formatCoords(event.pos.lat, event.pos.lng).format()}</p>
+            <p><b>Date :</b> {timestampToDateStr(event.eventTime)}</p>
+            <p><b>Route ID :</b> {event.routeId}</p>
+            <p><b>Route Name :</b> {event.routeName}</p>
+            <p><b>Speed :</b> {event.speed} km/h</p>
+            <p><b>Event type :</b> {event.eventType}</p>
+            <p><b>Foggy :</b> {event.foggy ? "True" : "False"}</p>
+            <p><b>Rainy :</b> {event.rainy ? "True" : "False"}</p>
+            <p><b>Windy :</b> {event.windy ? "True" : "False"}</p>
+            <p><b>Congestion level :</b> {event.congestionLevel}</p>
+            <p><b>Event position :</b> {formatCoords(event.pos.lat, event.pos.lng).format()}</p>
         </div>
     )
 }
