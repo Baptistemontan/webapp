@@ -15,7 +15,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
             <td className="driverEvent-small">{event.foggy ? "True" : "False"}</td>
             <td className="driverEvent-small">{event.rainy ? "True" : "False"}</td>
             <td className="driverEvent-small">{event.windy ? "True" : "False"}</td>
-            <td className="driverEvent-big">{event.congestionLevel}</td>
+            <td className="driverEvent-last">{event.congestionLevel}</td>
         </tr>
     )
 }
@@ -38,8 +38,23 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
         eventSelectHandle(event);
     }
 
+    const updateSelectedElem = (up:boolean) => {
+        if(selectedEvent === undefined) return
+        setSelectedEvent(selectedEvent + (up ? -1 : 1));
+        eventSelectHandle(currentDriver.events[selectedEvent])
+    }
+
+    const KeyHandle:React.KeyboardEventHandler = e => {
+        if(selectedEvent === undefined || e.repeat) return;
+        if(e.key === "ArrowDown" && selectedEvent < currentDriver.events.length - 1 ) {
+            updateSelectedElem(false);
+        } else if(e.key === "ArrowUp" && selectedEvent > 0) {
+            updateSelectedElem(true);
+        }
+    }
+
     return(
-        <table>
+        <table tabIndex={0} onKeyDown={KeyHandle}>
             <thead>
                 <tr className="driverEvent-Title">
                     <th className="driverEvent-big"><div>Date :</div></th>
