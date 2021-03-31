@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../css/DriverEvents.css";
+import "../css/DriverList.css";
 import { Driver, DriverEvent, Handler } from '../types'
 import { timestampToDateStr } from "../functions"
 
@@ -14,7 +15,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
             <td className="driverEvent-small">{event.foggy ? "True" : "False"}</td>
             <td className="driverEvent-small">{event.rainy ? "True" : "False"}</td>
             <td className="driverEvent-small">{event.windy ? "True" : "False"}</td>
-            <td className="driverEvent-last">{event.congestionLevel}</td>
+            <td className="driverEvent-big">{event.congestionLevel}</td>
         </tr>
     )
 }
@@ -40,16 +41,16 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
     return(
         <table>
             <thead>
-                <tr>
-                    <th className="driverEvent-big">Date :</th>
-                    <th className="driverEvent-small">Route ID :</th>
-                    <th className="driverEvent-big">Route name :</th>
-                    <th className="driverEvent-small">Speed :</th>
-                    <th className="driverEvent-big">Event type :</th>
-                    <th className="driverEvent-small">Foggy :</th>
-                    <th className="driverEvent-small">Rainy :</th>
-                    <th className="driverEvent-small">Windy :</th>
-                    <th className="driverEvent-big">Congestion level :</th>
+                <tr className="driverEvent-Title">
+                    <th className="driverEvent-big"><div>Date :</div></th>
+                    <th className="driverEvent-small"><div>Route ID :</div></th>
+                    <th className="driverEvent-big"><div>Route name :</div></th>
+                    <th className="driverEvent-small"><div>Speed :</div></th>
+                    <th className="driverEvent-big"><div>Event type :</div></th>
+                    <th className="driverEvent-small"><div>Foggy :</div></th>
+                    <th className="driverEvent-small"><div>Rainy :</div></th>
+                    <th className="driverEvent-small"><div>Windy :</div></th>
+                    <th className="driverEvent-big"><div>Congestion level :</div></th>
                 </tr>
             </thead>
             <tbody>

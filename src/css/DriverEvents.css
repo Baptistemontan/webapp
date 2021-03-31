@@ -50,13 +50,11 @@ tbody {
 }
 
 tbody td, thead th {
-    /* width: 10%; */
     float: left;
 }
 
 td, th {
     border-right: 1px solid;
-    padding: 0;
     padding: 0.2em;
 }
 
@@ -77,4 +75,15 @@ td {
 
 .driverEvent-small {
     width: 7%;
+}
+
+.driverEvent-Title th {
+    position: relative;
+}
+
+.driverEvent-Title div {
+    position: absolute;
+    top: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
