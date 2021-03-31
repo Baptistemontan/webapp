@@ -1,6 +1,5 @@
 .DriverList-Wrapper {
     border-right: 1px solid;
-    width: 100%;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -34,20 +33,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-}
-
-.DriverSelect-active-indicator {
-    margin-top: 40%;
-    margin-bottom: 40%;
-    min-width: 100%;
-    border: 1px solid;
-}
-
-.DriverSelect-active {
-    background-color: green;
-}
-
-.DriverSelect-inactive {
-    background-color: red;
 }
 
