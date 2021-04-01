@@ -54,7 +54,7 @@ export function driverEventCongestionLvlComp(a:DriverEvent, b:DriverEvent) {
 	return b.congestionLevel - a.congestionLevel;
 }
 
-export function compWay(foo:CompFunc, reversed:boolean) {
-	const bar:CompFunc = (a,b) => (reversed ? -1 : 1) * foo(a,b);
+export function compWay<T>(foo:CompFunc<T>, reversed:boolean) {
+	const bar:CompFunc<T> = (a,b) => (reversed ? -1 : 1) * foo(a,b);
 	return bar;
 }

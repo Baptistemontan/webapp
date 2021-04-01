@@ -26,7 +26,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
 export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEventIndex, setSelectedEventIndex] = useState<number|undefined>(undefined)
     const [reversedComp, setReversedComp] = useState<boolean>(false);
-    const [currentComp, setCurrentComp] = useState<CompFunc>(()=> driverEventTimeComp);
+    const [currentComp, setCurrentComp] = useState<CompFunc<DriverEvent>>(()=> driverEventTimeComp);
 
     // top row of the table reference
     const topRowRef = useRef<HTMLTableRowElement>(null);
@@ -47,7 +47,7 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
         eventSelectHandle(event);
     }
 
-    const SortBy = (foo:CompFunc) => {
+    const SortBy = (foo:CompFunc<DriverEvent>) => {
         if(currentComp === foo) {
             setReversedComp(!reversedComp);
         } else {
