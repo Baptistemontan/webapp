@@ -24,15 +24,17 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
 }
 
 export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
-    const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
+    const [selectedEventIndex, setSelectedEventIndex] = useState<number|undefined>(undefined)
     const [reversedComp, setReversedComp] = useState<boolean>(false);
     const [currentComp, setCurrentComp] = useState<CompFunc>(()=> driverEventTimeComp);
 
     // top row of the table reference
     const topRowRef = useRef<HTMLTableRowElement>(null);
 
+    // execute when switching driver
     useEffect(() => {
-        setSelectedEvent(undefined);
+        // reset all states
+        setSelectedEventIndex(undefined);
         setReversedComp(false);
         setCurrentComp(() => driverEventTimeComp);
         // scroll back to top when switching driver
@@ -41,7 +43,7 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
     
 
     const selectEvent = (event:DriverEvent, num:number) => {
-        setSelectedEvent(num);
+        setSelectedEventIndex(num);
         eventSelectHandle(event);
     }
 
@@ -75,7 +77,7 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
                 { /* same horrendous synthax error has in Map.tsx */ }
                 <>
                 {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
-                    <DriverEventDisplay key={event.routeName + index} selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
+                    <DriverEventDisplay key={event.routeName + index} selected={index === selectedEventIndex} event={event} clickHandle={() => { selectEvent(event, index)} }/>
                 ))}
                 </>
             </tbody>
