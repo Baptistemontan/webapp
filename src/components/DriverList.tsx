@@ -14,7 +14,7 @@ function DriverSelector({driver}:{driver?:Driver}) {
 
 export default function DriverList({currentDriver, drivers,clickHandler}:{currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver|undefined, boolean>}) {
     const list = drivers.map((driver, index) => (
-        <li className = {"DriverList-Selector button " + (driver.driverId === currentDriver?.driverId ? "selected" : "")} key={driver.driverName + index} onClick={() => clickHandler(driver, true)}>
+        <li className = {"DriverList-Selector button " + (driver === currentDriver ? "selected" : "")} key={driver.driverName + index} onClick={() => clickHandler(driver, true)}>
             <DriverSelector driver={driver}/>
         </li>
     ));
