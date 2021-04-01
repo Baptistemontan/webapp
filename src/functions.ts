@@ -1,5 +1,3 @@
-import {Handler, DriverEvent, CompFunc } from "./types"
-
 // Json loading and parsing
 export function LoadJson(path:string, callback:Handler<any>) {
 	fetch(path)

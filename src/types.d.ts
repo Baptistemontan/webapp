@@ -1,9 +1,9 @@
-export declare interface Position {
+declare interface Position {
     lat:number,
     lng:number,
 }
 
-export declare interface DriverEvent {
+declare interface DriverEvent {
     eventTime:number,
     routeId:number,
     routeName:string,
@@ -16,13 +16,13 @@ export declare interface DriverEvent {
     congestionLevel:number
 }
 
-export declare interface Driver {
+declare interface Driver {
     truckId:number,
     driverId:number,
     driverName:string,
     events:DriverEvent[]
 }
 
-export declare type Handler<Type> = (arg:Type) => void
-export declare type Handler2<Type1, Type2> = (arg1: Type1, arg2:Type2) => void
-export declare type CompFunc<T> = (a:T, b:T) => number;
+declare type Handler<Type> = (arg:Type) => void
+declare type Handler2<Type1, Type2> = (arg1: Type1, arg2:Type2) => void
+declare type CompFunc<T> = (a:T, b:T) => number;

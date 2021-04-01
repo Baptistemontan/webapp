@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../css/DriverEvents.css";
 import "../css/DriverList.css";
-import { Driver, DriverEvent, Handler, CompFunc } from '../types'
 import { timestampToDateStr, driverEventPosFilter, driverEventTimeComp, compWay, driverEventCongestionLvlComp, driverEventRouteIdComp, driverEventTypeComp, driverEventRouteNameComp, driverEventSpeedComp, driverEventWindyComp, driverEventFoggyComp, driverEventRainyComp } from "../functions"
 
 const classBig = "driverEvent-big";

@@ -1,6 +1,5 @@
 import React from 'react';
 import "../css/DriverList.css";
-import { Driver, Handler2 } from '../types'
 
 function DriverSelector({driver}:{driver?:Driver}) {
     return(

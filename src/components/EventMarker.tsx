@@ -1,5 +1,4 @@
 import React from 'react';
-import { DriverEvent } from '../types';
 import { Marker } from 'react-google-maps';
 
 const Pin = {url:"http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png", origin:{x:-12,y:0}};

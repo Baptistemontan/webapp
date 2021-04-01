@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './css/App.css';
 import DriverList from './components/DriverList';
-import { Driver } from './types';
 import { LoadJson } from "./functions"
 import DriverPage from './components/DriverPage'
 

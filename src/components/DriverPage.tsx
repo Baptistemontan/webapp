@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "../css/DriverPage.css";
-import { Driver, DriverEvent, Handler2 } from '../types'
 import Map, {MapStyle} from './Map'
 import EventsList from "./EventsList"
 import EventInfo from "./EventInfo"

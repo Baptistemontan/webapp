@@ -1,5 +1,4 @@
 import React from 'react';
-import { Driver, DriverEvent, Handler2 } from '../types';
 import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import DriverMarker from './DriverMarker';
 import EventMarker from './EventMarker'

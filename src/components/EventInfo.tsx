@@ -1,6 +1,5 @@
 import React from 'react';
 import "../css/DriverPage.css";
-import { DriverEvent } from '../types'
 import { timestampToDateStr } from "../functions"
 
 // no typescript version of this package, but it does exactly what I need so im gonna use it anyway
