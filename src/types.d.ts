@@ -25,3 +25,4 @@ export declare interface Driver {
 
 export declare type Handler<Type> = (arg:Type) => void
 export declare type Handler2<Type1, Type2> = (arg1: Type1, arg2:Type2) => void
+export declare type CompFunc = (a:DriverEvent, b:DriverEvent) => number;

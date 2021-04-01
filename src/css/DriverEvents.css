@@ -77,6 +77,10 @@ td {
     width: 7%;
 }
 
+.driverEvent-Title {
+    cursor: pointer;
+}
+
 .driverEvent-Title th {
     position: relative;
 }

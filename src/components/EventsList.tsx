@@ -1,33 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../css/DriverEvents.css";
 import "../css/DriverList.css";
-import { Driver, DriverEvent, Handler } from '../types'
-import { timestampToDateStr } from "../functions"
+import { Driver, DriverEvent, Handler, CompFunc } from '../types'
+import { timestampToDateStr, driverEventPosFilter, driverEventTimeComp, compWay, driverEventCongestionLvlComp, driverEventRouteIdComp, driverEventTypeComp, driverEventRouteNameComp, driverEventSpeedComp } from "../functions"
+
+const classBig = "driverEvent-big";
+const classSma = "driverEvent-small";
 
 function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, clickHandle:Handler<never>, selected:boolean}) {
     return(
         <tr onClick={clickHandle} className={"button " + (selected ? "selected" : "")}>
-            <td className="driverEvent-big">{timestampToDateStr(event.eventTime)}</td>
-            <td className="driverEvent-small">{event.routeId}</td>
-            <td className="driverEvent-big">{event.routeName}</td>
-            <td className="driverEvent-small">{event.speed}</td>
-            <td className="driverEvent-big">{event.eventType}</td>
-            <td className="driverEvent-small">{event.foggy ? "True" : "False"}</td>
-            <td className="driverEvent-small">{event.rainy ? "True" : "False"}</td>
-            <td className="driverEvent-small">{event.windy ? "True" : "False"}</td>
-            <td className="driverEvent-last">{event.congestionLevel}</td>
+            <td className={classBig}>{timestampToDateStr(event.eventTime)}  </td>
+            <td className={classSma}>{event.routeId}                        </td>
+            <td className={classBig}>{event.routeName}                      </td>
+            <td className={classSma}>{event.speed}                          </td>
+            <td className={classBig}>{event.eventType}                      </td>
+            <td className={classSma}>{event.foggy ? "True" : "False"}       </td>
+            <td className={classSma}>{event.rainy ? "True" : "False"}       </td>
+            <td className={classSma}>{event.windy ? "True" : "False"}       </td>
+            <td className="driverEvent-last">{event.congestionLevel}        </td>
         </tr>
     )
 }
 
 export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [selectedEvent, setSelectedEvent] = useState<number|undefined>(undefined)
+    const [reversedComp, setReversedComp] = useState<boolean>(false);
+    const [currentComp, setCurrentComp] = useState<CompFunc>(()=> driverEventTimeComp);
 
     // top row of the table reference
     const topRowRef = useRef<HTMLTableRowElement>(null);
 
     useEffect(() => {
         setSelectedEvent(undefined);
+        setReversedComp(false);
+        setCurrentComp(() => driverEventTimeComp);
         // scroll back to top when switching driver
         topRowRef.current?.scrollIntoView();
     },[currentDriver]);
@@ -38,34 +45,28 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
         eventSelectHandle(event);
     }
 
-    const updateSelectedElem = (up:boolean) => {
-        if(selectedEvent === undefined) return
-        setSelectedEvent(selectedEvent + (up ? -1 : 1));
-        eventSelectHandle(currentDriver.events[selectedEvent])
-    }
-
-    const KeyHandle:React.KeyboardEventHandler = e => {
-        if(selectedEvent === undefined || e.repeat) return;
-        if(e.key === "ArrowDown" && selectedEvent < currentDriver.events.length - 1 ) {
-            updateSelectedElem(false);
-        } else if(e.key === "ArrowUp" && selectedEvent > 0) {
-            updateSelectedElem(true);
+    const SortBy = (foo:CompFunc) => {
+        if(currentComp === foo) {
+            setReversedComp(!reversedComp);
+        } else {
+            setReversedComp(false);
+            setCurrentComp(() => foo);
         }
     }
 
     return(
-        <table tabIndex={0} onKeyDown={KeyHandle}>
+        <table className="noselect">
             <thead>
                 <tr className="driverEvent-Title">
-                    <th className="driverEvent-big"><div>Date :</div></th>
-                    <th className="driverEvent-small"><div>Route ID :</div></th>
-                    <th className="driverEvent-big"><div>Route name :</div></th>
-                    <th className="driverEvent-small"><div>Speed :</div></th>
-                    <th className="driverEvent-big"><div>Event type :</div></th>
-                    <th className="driverEvent-small"><div>Foggy :</div></th>
-                    <th className="driverEvent-small"><div>Rainy :</div></th>
-                    <th className="driverEvent-small"><div>Windy :</div></th>
-                    <th className="driverEvent-big"><div>Congestion level :</div></th>
+                    <th className={classBig} onClick={() => SortBy(driverEventTimeComp)}><div>Date :                </div></th>
+                    <th className={classSma} onClick={() => SortBy(driverEventRouteIdComp)}><div>Route ID :            </div></th>
+                    <th className={classBig} onClick={() => SortBy(driverEventRouteNameComp)}><div>Route name :          </div></th>
+                    <th className={classSma} onClick={() => SortBy(driverEventSpeedComp)}><div>Speed :               </div></th>
+                    <th className={classBig} onClick={() => SortBy(driverEventTypeComp)}><div>Event type :          </div></th>
+                    <th className={classSma}><div>Foggy :               </div></th>
+                    <th className={classSma}><div>Rainy :               </div></th>
+                    <th className={classSma}><div>Windy :               </div></th>
+                    <th className={classBig} onClick={() => SortBy(driverEventCongestionLvlComp)}><div>Congestion level :    </div></th>
                 </tr>
             </thead>
             <tbody>
@@ -73,7 +74,7 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
                 <tr ref={topRowRef}></tr>
                 { /* same horrendous synthax error has in Map.tsx */ }
                 <>
-                {currentDriver.events.map((event, index) => (
+                {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
                     <DriverEventDisplay key={event.routeName + index} selected={index === selectedEvent} event={event} clickHandle={() => { selectEvent(event, index)} }/>
                 ))}
                 </>
