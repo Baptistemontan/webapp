@@ -23,7 +23,7 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
                     <p>Driver Name : {currentDriver === undefined ? "No driver selected." : currentDriver.driverName} 
                     <br/>Truck ID : {currentDriver?.truckId}</p>
                 </div>
-                { currentDriver &&  <div className="DriverPage-switch-button button" onClick={changePageHandler}>
+                { currentDriver &&  <div className="DriverPage-switch-button button noselect" onClick={changePageHandler}>
                     <p>
                         {eventInfoRender ? "Events Map Page" : "Events Info Page"}
                     </p>

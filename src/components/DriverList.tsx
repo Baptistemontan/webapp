@@ -26,8 +26,8 @@ export default function DriverList({currentDriver, drivers,clickHandler}:{curren
         </li>
     )
     
-    return(
-        <ul className="DriverList-Wrapper">
+    return (
+        <ul className="DriverList-Wrapper noselect">
             { list.length ? list : defaultDriver }
         </ul>
     )
