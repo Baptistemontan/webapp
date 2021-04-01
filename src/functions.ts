@@ -54,6 +54,24 @@ export function driverEventCongestionLvlComp(a:DriverEvent, b:DriverEvent) {
 	return b.congestionLevel - a.congestionLevel;
 }
 
+export function driverEventWindyComp(a:DriverEvent, b:DriverEvent) {
+	if(a.windy === b.windy) return 0;
+	if(a.windy) return -1;
+	return 1;
+}
+
+export function driverEventRainyComp(a:DriverEvent, b:DriverEvent) {
+	if(a.rainy === b.rainy) return 0;
+	if(a.rainy) return -1;
+	return 1;
+}
+
+export function driverEventFoggyComp(a:DriverEvent, b:DriverEvent) {
+	if(a.foggy === b.foggy) return 0;
+	if(a.foggy) return -1;
+	return 1;
+}
+
 export function compWay<T>(foo:CompFunc<T>, reversed:boolean) {
 	const bar:CompFunc<T> = (a,b) => (reversed ? -1 : 1) * foo(a,b);
 	return bar;
