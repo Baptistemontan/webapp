@@ -47,12 +47,12 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
         eventSelectHandle(event);
     }
 
-    const SortBy = (foo:CompFunc<DriverEvent>) => {
-        if(currentComp === foo) {
+    const SortBy = (sortFn:CompFunc<DriverEvent>) => {
+        if(currentComp === sortFn) {
             setReversedComp(!reversedComp);
         } else {
             setReversedComp(false);
-            setCurrentComp(() => foo);
+            setCurrentComp(() => sortFn);
         }
     }
 
