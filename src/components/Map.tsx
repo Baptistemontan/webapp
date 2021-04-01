@@ -35,15 +35,10 @@ function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{rece
             options={{ gestureHandling: "greedy" }}
             {...(recenter && currentDriver ? {center:currentDriver.events[0].pos} : {})}
         >
-            {/* For unknown reason the map function give error if the is other siblings elements (only for synthax check, but compile properly) 
-                So I wrap the map function in <></>
-                This is kinda ugly but it get rid of the "Excessive stack depth comparing types 'FlatArray<Arr, ?>' and 'FlatArray<Arr, ?>'." error */}
-            <>
             {drivers.map((driver, index) => (
                 // for ***** reason having 2 marker at the same position makes them unable to be deleted, so we make sure we don't put 2 marker atthe same place
                 driver.events[0].pos !== event?.pos && <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
             ))}
-            </>
             <EventMarker event={event}/>
         </GoogleMap>
     )
