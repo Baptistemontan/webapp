@@ -65,6 +65,9 @@ export default function EventsList({currentEvent, eventSelectHandle, currentDriv
             <tbody>
                 { /* need this empty row to scroll back to the top */ }
                 <tr ref={topRowRef}></tr>
+                {/* first remove consecutive events with same pos, only the first one is kept
+                    Then sort with the given comparaison function, compWay just reverse the output of the function
+                    then map the result  */}
                 {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
                     <DriverEventDisplay key={event.eventTime + index} selected={event === currentEvent} event={event} clickHandle={() => eventSelectHandle(event) }/>
                 ))}
