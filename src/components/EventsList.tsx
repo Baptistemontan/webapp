@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import "../css/DriverEvents.css";
 import "../css/DriverList.css";
 import { Driver, DriverEvent, Handler, CompFunc } from '../types'
-import { timestampToDateStr, driverEventPosFilter, driverEventTimeComp, compWay, driverEventCongestionLvlComp, driverEventRouteIdComp, driverEventTypeComp, driverEventRouteNameComp, driverEventSpeedComp } from "../functions"
+import { timestampToDateStr, driverEventPosFilter, driverEventTimeComp, compWay, driverEventCongestionLvlComp, driverEventRouteIdComp, driverEventTypeComp, driverEventRouteNameComp, driverEventSpeedComp, driverEventWindyComp, driverEventFoggyComp, driverEventRainyComp } from "../functions"
 
 const classBig = "driverEvent-big";
 const classSma = "driverEvent-small";
@@ -57,23 +57,19 @@ export default function EventsList({currentEvent, eventSelectHandle, currentDriv
                     <th className={classBig} onClick={() => SortBy(driverEventRouteNameComp)}><div>Route name :</div></th>
                     <th className={classSma} onClick={() => SortBy(driverEventSpeedComp)}><div>Speed :</div></th>
                     <th className={classBig} onClick={() => SortBy(driverEventTypeComp)}><div>Event type :</div></th>
-                    <th className={classSma}><div>Foggy :</div></th>
-                    <th className={classSma}><div>Rainy :</div></th>
-                    <th className={classSma}><div>Windy :</div></th>
+                    <th className={classSma} onClick={() => SortBy(driverEventFoggyComp)}><div>Foggy :</div></th>
+                    <th className={classSma} onClick={() => SortBy(driverEventRainyComp)}><div>Rainy :</div></th>
+                    <th className={classSma} onClick={() => SortBy(driverEventWindyComp)}><div>Windy :</div></th>
                     <th className={classBig} onClick={() => SortBy(driverEventCongestionLvlComp)}><div>Congestion level :</div></th>
                 </tr>
             </thead>
             <tbody>
                 { /* need this empty row to scroll back to the top */ }
                 <tr ref={topRowRef}></tr>
-                { /* same horrendous synthax error as in Map.tsx */ }
-                <>
                 {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
                     <DriverEventDisplay key={event.eventTime + index} selected={event === currentEvent} event={event} clickHandle={() => eventSelectHandle(event) }/>
                 ))}
-                </>
             </tbody>
-            
         </table>
     )
 }
