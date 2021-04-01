@@ -10,8 +10,10 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
     const [eventInfoRender, setEventInfoRender] = useState<boolean>(false);
     const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined)
 
+    // switch beetween event info page and event map page
     const changePageHandler = () => setEventInfoRender(!eventInfoRender)
 
+    // trigger everytime the selected drive change
     useEffect(() => {
         setCurrentEvent(undefined);
     },[currentDriver]);
