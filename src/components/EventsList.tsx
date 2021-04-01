@@ -23,8 +23,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function EventsList({eventSelectHandle, currentDriver}:{eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
-    const [selectedEventIndex, setSelectedEventIndex] = useState<number|undefined>(undefined)
+export default function EventsList({currentEvent, eventSelectHandle, currentDriver}:{currentEvent?:DriverEvent, eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
     const [reversedComp, setReversedComp] = useState<boolean>(false);
     const [currentComp, setCurrentComp] = useState<CompFunc<DriverEvent>>(()=> driverEventTimeComp);
 
@@ -34,19 +33,12 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
     // execute when switching driver
     useEffect(() => {
         // reset all states
-        setSelectedEventIndex(undefined);
         setReversedComp(false);
         setCurrentComp(() => driverEventTimeComp);
         // scroll back to top when switching driver
         topRowRef.current?.scrollIntoView();
     },[currentDriver]);
     
-
-    const selectEvent = (event:DriverEvent, num:number) => {
-        setSelectedEventIndex(num);
-        eventSelectHandle(event);
-    }
-
     const SortBy = (sortFn:CompFunc<DriverEvent>) => {
         if(currentComp === sortFn) {
             setReversedComp(!reversedComp);
@@ -77,7 +69,7 @@ export default function EventsList({eventSelectHandle, currentDriver}:{eventSele
                 { /* same horrendous synthax error has in Map.tsx */ }
                 <>
                 {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
-                    <DriverEventDisplay key={event.routeName + index} selected={index === selectedEventIndex} event={event} clickHandle={() => { selectEvent(event, index)} }/>
+                    <DriverEventDisplay key={event.eventTime + index} selected={event === currentEvent} event={event} clickHandle={() => eventSelectHandle(event) }/>
                 ))}
                 </>
             </tbody>
