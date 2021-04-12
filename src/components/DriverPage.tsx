@@ -8,6 +8,7 @@ import EventInfo from "./EventInfo"
 export default function DriverPage({currentDriver, drivers, recenter, currentDriverHandler}:{currentDriverHandler:Handler2<Driver, boolean>, currentDriver?:Driver, drivers:Driver[], recenter:boolean}) {
     const [eventInfoRender, setEventInfoRender] = useState<boolean>(false);
     const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined)
+    const [events, setEvents] = useState<DriverEvent[]|undefined>(undefined);
 
     // switch beetween event info page and event map page
     const changePageHandler = () => setEventInfoRender(!eventInfoRender)
@@ -15,6 +16,11 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
     // trigger everytime the selected drive change
     useEffect(() => {
         setCurrentEvent(undefined);
+        if(currentDriver) {
+            fetch("http://localhost:8888/get/events/" + currentDriver.driverId)
+            .then(res => res.json())
+            .then(data => setEvents(data))
+        }
     },[currentDriver]);
 
     return (
@@ -33,7 +39,7 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
 
             <Map recenter={recenter} currentDriver={currentDriver} drivers={drivers} clickHandler={currentDriverHandler} event={currentEvent} {...(MapStyle(!eventInfoRender))}/>
             
-            { currentDriver && <EventsList currentEvent={currentEvent} currentDriver={currentDriver} eventSelectHandle={setCurrentEvent} /> }
+            { events && <EventsList currentEvent={currentEvent} events={events} eventSelectHandle={setCurrentEvent} /> }
             
             { eventInfoRender && currentEvent &&  <EventInfo event={currentEvent} />}
         </div>

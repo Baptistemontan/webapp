@@ -5,15 +5,22 @@ import { Marker, InfoWindow } from 'react-google-maps';
 
 export default function DriverMarker({driver, clickHandler}:{driver:Driver, clickHandler:Handler2<Driver, boolean>}) {
     const [infoWindowVisibility, setInfoWindowVisibility] = useState<boolean>(false);
+    // const [lastPos, setLastPos] = useState<Position | undefined>(undefined);
     
     const onClick = () => {
         setInfoWindowVisibility(!infoWindowVisibility);
         clickHandler(driver, false);
     }
+
+    // useEffect(() => {
+    //     fetch("http://localhost:3000/get/driverpos/" + driver.driverId)
+    //     .then(res => res.json())
+    //     .then(data => setLastPos(data))
+    // }, [driver]);
     
     return (
         <Marker 
-            position={driver.events[0].pos}
+            position={driver.lastPos}
             onClick={onClick}
         >
             { infoWindowVisibility && 

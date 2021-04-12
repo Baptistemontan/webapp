@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './css/App.css';
 import DriverList from './components/DriverList';
-import { LoadJson } from "./functions"
+// import { LoadJson } from "./functions"
 import DriverPage from './components/DriverPage'
 
 function App() {
@@ -12,7 +12,10 @@ function App() {
 
 	// json fetching on reload
 	useEffect(()=>{
-    	LoadJson(window.location.href + "/drivers.json", setDrivers);
+    	// LoadJson(window.location.href + "/drivers.json", setDrivers);
+		fetch("http://localhost:8888/get/drivers")
+        .then(res => res.json())
+        .then(data => setDrivers(data))
 	},[])
 
 	// click handler

@@ -26,17 +26,20 @@ export const MapStyle = (visible:boolean) => ({
 
 
 function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver, boolean>, event?:DriverEvent}) {
+    
+
+    
     return(
         <GoogleMap
             defaultZoom={5}
             defaultCenter={defaultCenter}
             // disable "CTRL + scroll to zoom" message
             options={{ gestureHandling: "greedy" }}
-            {...(recenter && currentDriver ? {center:currentDriver.events[0].pos} : {})}
+            {...(recenter && currentDriver ? {center:currentDriver.lastPos} : {})}
         >
             {drivers.map((driver, index) => (
                 // for ***** reason having 2 marker at the same position makes them unable to be deleted, so we make sure we don't put 2 marker atthe same place
-                driver.events[0].pos !== event?.pos && <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
+                driver.lastPos !== event?.pos && <DriverMarker key={driver.driverName + index} driver={driver} clickHandler={clickHandler} />
             ))}
             <EventMarker event={event}/>
         </GoogleMap>

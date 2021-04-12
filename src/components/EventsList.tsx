@@ -22,7 +22,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function EventsList({currentEvent, eventSelectHandle, currentDriver}:{currentEvent?:DriverEvent, eventSelectHandle:Handler<DriverEvent|undefined>, currentDriver:Driver}) {
+export default function EventsList({currentEvent, eventSelectHandle, events}:{currentEvent?:DriverEvent, eventSelectHandle:Handler<DriverEvent|undefined>, events:DriverEvent[]}) {
     const [reversedComp, setReversedComp] = useState<boolean>(false);
     const [currentComp, setCurrentComp] = useState<CompFunc<DriverEvent>>(()=> driverEventTimeComp);
 
@@ -36,7 +36,7 @@ export default function EventsList({currentEvent, eventSelectHandle, currentDriv
         setCurrentComp(() => driverEventTimeComp);
         // scroll back to top when switching driver
         topRowRef.current?.scrollIntoView();
-    },[currentDriver]);
+    },[events]);
     
     const SortBy = (sortFn:CompFunc<DriverEvent>) => {
         if(currentComp === sortFn) {
@@ -68,7 +68,7 @@ export default function EventsList({currentEvent, eventSelectHandle, currentDriv
                 {/* first remove consecutive events with same pos, only the first one is kept
                     Then sort with the given comparaison function, compWay just reverse the output of the function
                     then map the result  */}
-                {currentDriver.events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
+                {events.filter(driverEventPosFilter).sort(compWay(currentComp, reversedComp)).map((event, index) => (
                     <DriverEventDisplay key={event.eventTime + index} selected={event === currentEvent} event={event} clickHandle={() => eventSelectHandle(event) }/>
                 ))}
             </tbody>

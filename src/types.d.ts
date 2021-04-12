@@ -4,6 +4,7 @@ declare interface Position {
 }
 
 declare interface DriverEvent {
+    driverId: number,
     eventTime:number,
     routeId:number,
     routeName:string,
@@ -19,8 +20,8 @@ declare interface DriverEvent {
 declare interface Driver {
     truckId:number,
     driverId:number,
-    driverName:string,
-    events:DriverEvent[]
+    driverName:string
+    lastPos:Position
 }
 
 declare type Handler<Type> = (arg:Type) => void
