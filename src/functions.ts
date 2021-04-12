@@ -74,3 +74,5 @@ export function compWay<T>(foo:CompFunc<T>, reversed:boolean) {
 	const bar:CompFunc<T> = (a,b) => (reversed ? -1 : 1) * foo(a,b);
 	return bar;
 }
+
+export const DRIVER_API_URL = "http://localhost:8888"

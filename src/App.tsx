@@ -3,6 +3,7 @@ import './css/App.css';
 import DriverList from './components/DriverList';
 // import { LoadJson } from "./functions"
 import DriverPage from './components/DriverPage'
+import {DRIVER_API_URL} from "./functions"
 
 function App() {
 	// hooks creation
@@ -13,7 +14,7 @@ function App() {
 	// json fetching on reload
 	useEffect(()=>{
     	// LoadJson(window.location.href + "/drivers.json", setDrivers);
-		fetch("http://localhost:8888/get/drivers")
+		fetch(DRIVER_API_URL + "/get/drivers")
         .then(res => res.json())
         .then(data => setDrivers(data))
 	},[])

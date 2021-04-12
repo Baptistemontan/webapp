@@ -3,6 +3,7 @@ import "../css/DriverPage.css";
 import Map, {MapStyle} from './Map'
 import EventsList from "./EventsList"
 import EventInfo from "./EventInfo"
+import { DRIVER_API_URL } from '../functions';
 
 
 export default function DriverPage({currentDriver, drivers, recenter, currentDriverHandler}:{currentDriverHandler:Handler2<Driver, boolean>, currentDriver?:Driver, drivers:Driver[], recenter:boolean}) {
@@ -17,7 +18,7 @@ export default function DriverPage({currentDriver, drivers, recenter, currentDri
     useEffect(() => {
         setCurrentEvent(undefined);
         if(currentDriver) {
-            fetch("http://localhost:8888/get/events/" + currentDriver.driverId)
+            fetch(DRIVER_API_URL + "/get/events/" + currentDriver.driverId)
             .then(res => res.json())
             .then(data => setEvents(data))
         }
