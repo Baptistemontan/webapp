@@ -6,7 +6,7 @@ import EventInfo from "./EventInfo"
 import { DRIVER_API_URL } from '../functions';
 
 
-export default function DriverPage({currentDriver, drivers, recenter, currentDriverHandler}:{currentDriverHandler:Handler2<Driver, boolean>, currentDriver?:Driver, drivers:Driver[], recenter:boolean}) {
+export default function DriverPage({currentDriver, drivers, recenter, currentDriverHandler}:{currentDriverHandler:Handler2<Driver, boolean>, currentDriver:Driver|undefined, drivers:Driver[], recenter:boolean}) {
     const [eventInfoRender, setEventInfoRender] = useState<boolean>(false);
     const [currentEvent, setCurrentEvent] = useState<DriverEvent|undefined>(undefined)
     const [events, setEvents] = useState<DriverEvent[]|undefined>(undefined);

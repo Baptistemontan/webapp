@@ -25,7 +25,7 @@ export const MapStyle = (visible:boolean) => ({
 })
 
 
-function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver?:Driver, drivers:Driver[], clickHandler:Handler2<Driver, boolean>, event?:DriverEvent}) {
+function MapRender({recenter, currentDriver, drivers, clickHandler, event}:{recenter:boolean,currentDriver:Driver|undefined, drivers:Driver[], clickHandler:Handler2<Driver, boolean>, event:DriverEvent|undefined}) {
     
 
     

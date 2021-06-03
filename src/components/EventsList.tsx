@@ -22,7 +22,7 @@ function DriverEventDisplay({event, clickHandle, selected}:{event:DriverEvent, c
     )
 }
 
-export default function EventsList({currentEvent, eventSelectHandle, events}:{currentEvent?:DriverEvent, eventSelectHandle:Handler<DriverEvent|undefined>, events:DriverEvent[]}) {
+export default function EventsList({currentEvent, eventSelectHandle, events}:{currentEvent:DriverEvent|undefined, eventSelectHandle:Handler<DriverEvent|undefined>, events:DriverEvent[]}) {
     const [reversedComp, setReversedComp] = useState<boolean>(false);
     const [currentComp, setCurrentComp] = useState<CompFunc<DriverEvent>>(()=> driverEventTimeComp);
 
