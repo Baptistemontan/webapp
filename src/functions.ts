@@ -75,4 +75,4 @@ export function compWay<T>(foo:CompFunc<T>, reversed:boolean) {
 	return bar;
 }
 
-export const DRIVER_API_URL = "http://localhost:8888"
+export const DRIVER_API_URL = "https://pst-2021-server.herokuapp.com"
