@@ -3,7 +3,7 @@ import './css/App.css';
 import DriverList from './components/DriverList';
 // import { LoadJson } from "./functions"
 import DriverPage from './components/DriverPage'
-import {DRIVER_API_URL} from "./functions"
+import {DRIVER_API_URL, fetchAPI} from "./functions"
 
 function App() {
 	// hooks creation
@@ -11,12 +11,9 @@ function App() {
 	const [currentDriver, setCurrentDriver] = useState<Driver|undefined>(undefined);
 	const [recenter, setRecenter] = useState<boolean>(false);
 
-	// json fetching on reload
-	useEffect(()=>{
-    	// LoadJson(window.location.href + "/drivers.json", setDrivers);
-		fetch(DRIVER_API_URL + "/get/drivers")
-        .then(res => res.json())
-        .then(data => setDrivers(data))
+	// call API
+	useEffect(() => {
+		fetchAPI(DRIVER_API_URL + "/get/drivers", setDrivers, console.error);
 	},[])
 
 	// click handler

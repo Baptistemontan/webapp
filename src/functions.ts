@@ -1,16 +1,9 @@
-// Json loading and parsing
-export function LoadJson(path:string, callback:Handler<any>) {
-	fetch(path)
+export function fetchAPI(URL:string, callback:(data:any) => void, errorCb:(err:any) => void) {
+	fetch(URL)
 	.then(response => {
 		return response.json()
-	}, reason => {
-		console.log(reason);
-	})
-	.then(myJson => {
-		callback(myJson)
-	}, err => {
-		console.log(err);
-	})
+	}, errorCb)
+	.then(callback, errorCb);
 }
 
 export function timestampToDateStr(timestamp:number) {
